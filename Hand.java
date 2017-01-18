@@ -1,16 +1,25 @@
+import java.util.ArrayList;
 public class Hand{
-    public String[] currentHand;
+    private ArrayList<Card> currentHand;
     
     //basic constructor
     public Hand(){
+	currentHand = new ArrayList<Card>();
     }
 
     //adds card to this hand
-    public String add(String card){
-	//adds nessacary info to the string
-	//adds string to hand
-	//returns the string
+    public void add(Card card){
+        currentHand.add(card);
     }
 
-    //
+    public int total(){
+	int total = 0;
+	for(int i = 0; i < currentHand.size(); i++){
+	    total = total + (currentHand.get(i)).getVal();
+	}return total;
+    }
+
+    public void empty(){
+	currentHand.clear();
+    }
 }
