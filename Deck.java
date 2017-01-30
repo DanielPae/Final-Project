@@ -8,6 +8,7 @@ public class Deck{
     }
 
     public void fillDeck(){
+	deck = new Card[52];
 	int deck_spot = 0;
 	for(int cNum = '1'; cNum < '1' + 9 ; cNum++){
 	    for(int suit = 'a'; suit < 'e'; suit++){
@@ -25,6 +26,7 @@ public class Deck{
 	    deck[deck_spot] = new Card('a',suit);
 	    deck_spot++;
 	}
+	shuffle();
     }
 
     public void shuffle(){
@@ -38,30 +40,25 @@ public class Deck{
 	}
     }
 
-    public Card dealCard(int cx, int cy){
+    public Card dealCard(){
         Card[] newD = new Card[deck.length - 1];
 	for(int x = 0; x < newD.length; x++){
 	    newD[x] = deck[x];
 	}
 	Card a = deck[deck.length - 1];
 	deck = newD;
-	a.setX(cx);
-	a.sety(cy);
+	if(deck.length == 1) fillDeck();
 	return a;
     }
 
     public static void main(String[] args){
 	Deck a = new Deck();
-	a.shuffle();/*
-	for(int x = 0; x < a.deck.length; x++){
-	    System.out.println(a.deck[x]);
-	    }*/
-	System.out.println(a.dealCard());
-	System.out.println(a.dealCard());
-	System.out.println(a.dealCard());
-	System.out.println(a.dealCard());
-	System.out.println(a.dealCard());
-		 
+	a.shuffle();
+	for(int i = 0; i < 52; i++){
+	    System.out.println(a.dealCard());
+	}
+	
+	a.fillDeck();
 	
 }
 
